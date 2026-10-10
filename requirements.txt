@@ -1,0 +1,30 @@
+# 自驱 · 通用智能体 —— LangChain 1.0
+# ⚠️ 运行环境要求: Python >= 3.11  (请用 3.11 / 3.12 建环境, websockets==17.1 需 >=3.11)
+#   注: requirements.txt 不负责指定 Python 版本, 解释器由你建环境时选定。
+# 安装: pip install -r requirements.txt
+# 说明: 版本均已在 PyPI 上互相验证兼容(deepagents 0.6.x 要求 langchain>=1.3.11,
+#       langchain-mcp-adapters 要求 mcp>=1.24,<2.0, 故 mcp 锁在 1.x 而非 2.x)
+# ⚠️ deepagents 必须锁 0.6.x: 项目代码用的是 backend 工厂函数(mybackend.backend_factory),
+#    而 deepagents 0.7.0 起移除了工厂支持, 会报 "Backend factories were removed"。
+
+langchain==1.4.0
+openai==2.54.0
+httpx==0.28.1
+langchain-openai==1.6.1
+langgraph-cli==0.4.31
+python-dotenv==1.2.3
+deepagents==0.6.12
+minio==7.2.20
+markitdown[all]==0.1.7
+pypandoc==1.17
+mcp==1.30.0
+langchain-mcp-adapters==0.3.2
+
+# ---------- 本地直跑(非 Docker)额外依赖：app.py 使用 ----------
+# 源码直接 import 了 fastapi/pydantic(BaseModel) 并在 app.py 里用 uvicorn 起服务;
+# websockets 用于 WebSocket 通道(uvicorn 处理 ws 协议时需要); requests 被工具类广泛使用。
+# 注: openai、pydantic 会随 langchain-openai / fastapi 自动装好，无需单独指定
+fastapi==0.141.1
+uvicorn==0.52.4
+websockets==16.1.1
+requests==2.34.2
